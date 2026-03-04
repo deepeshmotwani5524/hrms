@@ -13,7 +13,7 @@ const api = {
                 res = await fetch(`${API_BASE}${path}`, opts);
             } 
             catch (networkErr) {
-                throw {
+                return {
                     message:
                     "Cannot reach the server. Make sure the Django backend is running.",
                     details: null,
@@ -40,7 +40,7 @@ const api = {
                 .join("\n");
             }
 
-            throw { message: fieldErrors || msg, details: json.details || null };
+            return { message: fieldErrors || msg, details: json.details || null };
         }
 
         // Successful response — return the `data` field
