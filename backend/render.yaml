@@ -1,0 +1,25 @@
+services:
+  - type: web
+    name: hrms-lite-api
+    env: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn hrms_backend.wsgi:application --bind 0.0.0.0:$PORT --workers 2
+    envVars:
+      - key: DEBUG
+        value: False
+      - key: SECRET_KEY
+        generateValue: true
+      - key: ALLOWED_HOSTS
+        value: hrms-lite-api.onrender.com
+      - key: CORS_ALLOW_ALL_ORIGINS
+        value: False
+      - key: CORS_ALLOWED_ORIGINS
+        value: https://your-frontend.vercel.app
+      - key: DATABASE_URL
+        fromDatabase:
+          name: hrms-lite-db
+          property: connectionString
+
+databases:
+  - name: hrms-lite-db
+    plan: free
