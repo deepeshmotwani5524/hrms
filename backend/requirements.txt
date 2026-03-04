@@ -4,7 +4,8 @@ djangorestframework==3.15.1
 django-cors-headers==4.3.1
 
 # PostgreSQL (used in production on Render/Railway)
-psycopg[binary]==3.1.19
+psycopg==3.1.19
+psycopg-binary==3.1.19
 dj-database-url==2.1.0
 
 # Production server
