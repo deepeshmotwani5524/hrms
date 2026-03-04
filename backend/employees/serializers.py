@@ -12,7 +12,6 @@ class EmployeeSerializer(serializers.ModelSerializer):
         model = Employee
         fields = [
             "id",
-            "employee_id",
             "full_name",
             "email",
             "department",
@@ -22,21 +21,6 @@ class EmployeeSerializer(serializers.ModelSerializer):
         read_only_fields = ["id", "created_at", "updated_at"]
 
     # ── Field-level validation ────────────────────────────────────────────────
-
-    def validate_employee_id(self, value):
-        value = value.strip().upper()
-        if not value:
-            raise serializers.ValidationError("Employee ID cannot be blank.")
-        # On update, exclude the current instance from the uniqueness check.
-        qs = Employee.objects.filter(employee_id=value)
-        if self.instance:
-            qs = qs.exclude(pk=self.instance.pk)
-        if qs.exists():
-            raise serializers.ValidationError(
-                f'Employee ID "{value}" is already in use.'
-            )
-        return value
-
     def validate_email(self, value):
         value = value.strip().lower()
         qs = Employee.objects.filter(email=value)

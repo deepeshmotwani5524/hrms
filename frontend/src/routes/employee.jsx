@@ -149,10 +149,10 @@ export function Employees() {
             </>}>
             {formError && <Alert type="error">{formError}</Alert>}
             <div className="form-grid">
-                <div className="form-group">
-                <label>Employee ID *</label>
-                <input className="input" placeholder="e.g. EMP009" value={form.id} onChange={e => setForm(f => ({ ...f, id:e.target.value }))} />
-                </div>
+                {/* <div className="form-group"> */}
+                {/* <label>Employee ID *</label>
+                <input className="input" placeholder="e.g. EMP009" value={form.id} onChange={e => setForm(f => ({ ...f, id:e.target.value }))} /> */}
+                {/* </div> */}
                 <div className="form-group">
                 <label>Department *</label>
                 <select className="select" value={form.department} onChange={e => setForm(f => ({ ...f, department:e.target.value }))}>

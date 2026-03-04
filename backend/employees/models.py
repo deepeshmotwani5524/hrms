@@ -41,3 +41,16 @@ class Employee(models.Model):
 
     def __str__(self):
         return f"{self.employee_id} – {self.full_name}"
+
+    def save(self, *args, **kwargs):
+        if not self.employee_id:
+            last_employee = Employee.objects.order_by("-id").first()
+            if last_employee:
+                last_id = int(last_employee.employee_id.replace("EMP", ""))
+                new_id = last_id + 1
+            else:
+                new_id = 1
+
+            self.employee_id = f"EMP{new_id:03d}"
+
+        super().save(*args, **kwargs)
