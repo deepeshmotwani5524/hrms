@@ -7,7 +7,6 @@ import {
   Routes,
   Route,
   NavLink,
-  useNavigate,
   useLocation,
   Navigate,
 } from "react-router-dom";
